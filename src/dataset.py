@@ -42,6 +42,50 @@ def scores_to_labels(scores: pd.Series, thresholds: tuple[float, float]) -> pd.S
     labels = pd.cut(scores, bins=bins, labels=LABELS, include_lowest=True)
     return labels.astype(str)
 
+def clean_data(
+    df: pd.DataFrame,
+    remove_empty_argument: bool = True,
+    min_argument_length: int = 5,
+    remove_duplicates: bool = True,
+    remove_null_quality: bool = True,
+) -> pd.DataFrame:
+    original_len = len(df)
+    df_clean = df.copy()
+    
+    stats = {"Original": original_len}
+    
+    # Remove rows with null quality score
+    if remove_null_quality and QUALITY_COLUMN in df_clean.columns:
+        df_clean = df_clean[df_clean[QUALITY_COLUMN].notna()]
+        stats["After removing null quality"] = len(df_clean)
+    
+    # Remove empty arguments
+    if remove_empty_argument and 'argument' in df_clean.columns:
+        df_clean = df_clean[df_clean['argument'].fillna('').str.len() > 0]
+        stats["After removing empty arguments"] = len(df_clean)
+    
+    # Remove short arguments
+    if min_argument_length > 0 and 'argument' in df_clean.columns:
+        df_clean = df_clean[df_clean['argument'].fillna('').str.len() >= min_argument_length]
+        stats["After removing short arguments"] = len(df_clean)
+    
+    # Remove exact duplicates
+    if remove_duplicates:
+        df_clean = df_clean.drop_duplicates()
+        stats["After removing duplicates"] = len(df_clean)
+    
+    # Strip whitespace from text columns
+    text_cols = df_clean.select_dtypes(include=['object']).columns
+    for col in text_cols:
+        df_clean[col] = df_clean[col].apply(
+            lambda x: x.strip() if isinstance(x, str) else x
+        )
+    
+    stats["Final"] = len(df_clean)
+    stats["Rows removed"] = original_len - len(df_clean)
+    stats["Percentage retained"] = f"{(len(df_clean)/original_len*100):.2f}%"
+    
+    return df_clean, stats
 
 def get_data(
     dataset_repo: str = DATASET_REPO,
@@ -53,6 +97,7 @@ def get_data(
 
     prepared: dict[str, tuple[pd.Series, pd.Series]] = {}
     for split_name, df in splits.items():
+        df = clean_data(df)[0]  # Clean the data and take the cleaned DataFrame
         x = build_input_text(df)
         y = scores_to_labels(df[quality_column], thresholds)
         prepared[split_name] = (x, y)

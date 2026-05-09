@@ -15,9 +15,10 @@ from src.dataset import LABELS, get_data
 @dataclass
 class Baseline2Config:
     max_features: int = 30000
-    ngram_range: tuple[int, int] = (1, 2)
-    min_df: int = 2
-    max_iter: int = 2000
+    ngram_range: tuple[int, int] = (1, 3)
+    min_df: int = 1
+    c: float = 0.25
+    max_iter: int = 5000
     random_state: int = 42
 
 
@@ -36,12 +37,14 @@ class Baseline2Pipeline:
                         max_features=self.config.max_features,
                         min_df=self.config.min_df,
                         strip_accents="unicode",
+                        sublinear_tf=True,
                     ),
                 ),
                 (
                     "classifier",
                     LinearSVC(
-                        class_weight="balanced",
+                        C=self.config.c,
+                        class_weight=None,
                         max_iter=self.config.max_iter,
                         random_state=self.config.random_state,
                     ),

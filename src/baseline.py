@@ -15,9 +15,10 @@ from src.dataset import LABELS, get_data
 @dataclass
 class BaselineConfig:
     max_features: int = 30000
-    ngram_range: tuple[int, int] = (1, 2)
+    ngram_range: tuple[int, int] = (1, 3)
     min_df: int = 2
-    max_iter: int = 1000
+    c: float = 1.0
+    max_iter: int = 1200
     random_state: int = 42
 
 
@@ -36,14 +37,16 @@ class BaselinePipeline:
                         max_features=self.config.max_features,
                         min_df=self.config.min_df,
                         strip_accents="unicode",
+                        sublinear_tf=True,
                     ),
                 ),
                 (
                     "classifier",
                     LogisticRegression(
+                        C=self.config.c,
                         max_iter=self.config.max_iter,
                         random_state=self.config.random_state,
-                        class_weight="balanced",
+                        class_weight=None,
                     ),
                 ),
             ]
