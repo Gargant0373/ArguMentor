@@ -89,9 +89,11 @@ class FinetunePipeline:
     def _compute_metrics(eval_pred) -> dict[str, float]:
         logits, labels = eval_pred
         predictions = np.argmax(logits, axis=-1)
+        mean_ordinal_distance = float(np.mean(np.abs(predictions.astype(int) - labels.astype(int))))
         return {
             "accuracy": float(accuracy_score(labels, predictions)),
             "macro_f1": float(f1_score(labels, predictions, average="macro", zero_division=0)),
+            "mean_ordinal_distance": mean_ordinal_distance,
         }
 
     def _get_trainer(self) -> Trainer:
@@ -172,9 +174,24 @@ class FinetunePipeline:
         true_labels = pred_output.label_ids
         label_names = [ID_TO_LABEL[i] for i in range(len(LABELS))]
 
+        mean_ordinal_distance = float(np.mean(np.abs(pred_labels.astype(int) - true_labels.astype(int))))
+
+        pairwise_error_rates: dict[str, float] = {}
+        for true_id, true_name in ID_TO_LABEL.items():
+            mask = true_labels == true_id
+            if not mask.any():
+                continue
+            for pred_id, pred_name in ID_TO_LABEL.items():
+                if pred_id == true_id:
+                    continue
+                key = f"{true_name}\u2192{pred_name}"
+                pairwise_error_rates[key] = float(np.mean(pred_labels[mask] == pred_id))
+
         return {
             "accuracy": float(accuracy_score(true_labels, pred_labels)),
             "f1_macro": float(f1_score(true_labels, pred_labels, average="macro", zero_division=0)),
+            "mean_ordinal_distance": mean_ordinal_distance,
+            "pairwise_error_rates": pairwise_error_rates,
             "confusion_matrix": confusion_matrix(
                 true_labels, pred_labels, labels=list(range(len(LABELS)))
             ).tolist(),
@@ -212,5 +229,6 @@ if __name__ == "__main__":
     print("\n=== Fine-tune Results (RoBERTa) ===")
     for split in ("dev", "test"):
         r = results[split]
-        print(f"\n{split.upper()} — accuracy: {r['accuracy']:.4f}  macro_f1: {r['f1_macro']:.4f}")
+        print(f"\n{split.upper()} — accuracy: {r['accuracy']:.4f}  macro_f1: {r['f1_macro']:.4f}  mean_ordinal_distance: {r['mean_ordinal_distance']:.4f}")
+        print("  pairwise error rates: " + "  ".join(f"{k}: {v:.4f}" for k, v in r["pairwise_error_rates"].items()))
         print(r["classification_report"])
