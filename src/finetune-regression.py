@@ -51,7 +51,7 @@ def _detect_device() -> str:
 
 
 class FinetunePipeline:
-    """RoBERTa fine-tuning pipeline for argument quality classification."""
+    """RoBERTa fine-tuning pipeline for argument quality regression."""
 
     def __init__(self, config: FinetuneConfig | None = None) -> None:
         self.config = config or FinetuneConfig()
