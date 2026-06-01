@@ -108,7 +108,7 @@ def get_data_continuous(
     dataset_repo: str = DATASET_REPO,
     quality_column: str = QUALITY_COLUMN,
 ) -> tuple[dict[str, tuple[pd.Series, pd.Series]]]:
-    """Return prepared split data as (X, y) pairs plus fitted thresholds."""
+    """Return prepared split data as (X, y) pairs with continuous y."""
     splits = load_splits(dataset_repo)
 
     prepared: dict[str, tuple[pd.Series, pd.Series]] = {}
