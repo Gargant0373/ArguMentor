@@ -103,3 +103,19 @@ def get_data(
         prepared[split_name] = (x, y)
 
     return prepared, thresholds
+
+def get_data_continuous(
+    dataset_repo: str = DATASET_REPO,
+    quality_column: str = QUALITY_COLUMN,
+) -> tuple[dict[str, tuple[pd.Series, pd.Series]]]:
+    """Return prepared split data as (X, y) pairs plus fitted thresholds."""
+    splits = load_splits(dataset_repo)
+
+    prepared: dict[str, tuple[pd.Series, pd.Series]] = {}
+    for split_name, df in splits.items():
+        df = clean_data(df)[0]  # Clean the data and take the cleaned DataFrame
+        x = build_input_text(df)
+        y = df[quality_column].astype(float)
+        prepared[split_name] = (x, y)
+
+    return prepared
