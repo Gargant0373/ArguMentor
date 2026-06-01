@@ -19,6 +19,7 @@ _predictors: dict[str, ArgumentPredictor] = {}
 _feedback_generator = FeedbackGenerator(model="llama3.2:3b")
 
 _MODEL_CHOICES = {
+    "RoBERTa (regression)": "roberta-regression",
     "RoBERTa (fine-tuned)": "roberta",
     "TF-IDF + Logistic Regression": "logreg",
 }
@@ -172,7 +173,7 @@ with gr.Blocks(title="ArguMentor") as demo:
         with gr.Row():
             model_selector = gr.Radio(
                 choices=list(_MODEL_CHOICES.keys()),
-                value="RoBERTa (fine-tuned)",
+                value="RoBERTa (regression)",
                 label="Classifier",
                 scale=3,
             )
