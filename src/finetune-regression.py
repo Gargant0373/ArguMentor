@@ -28,8 +28,8 @@ except ModuleNotFoundError:
 @dataclass
 class FinetuneConfig:
     model_name: str = "roberta-base"
-    cache_dir: str = "./argument_model-roberta-regression"
-    output_dir: str = "./results/finetune-roberta-regression"
+    cache_dir: str = "./argument_model-roberta"
+    output_dir: str = "./results/finetune-roberta"
     max_length: int = 512
     learning_rate: float = 2e-5
     per_device_train_batch_size: int = 8
