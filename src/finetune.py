@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
@@ -18,29 +17,14 @@ from transformers import (
 )
 
 try:
+    from src.config import FinetuneConfig
     from src.dataset import LABELS, get_data
 except ModuleNotFoundError:
+    from config import FinetuneConfig
     from dataset import LABELS, get_data
 
 LABEL_TO_ID: dict[str, int] = {label: idx for idx, label in enumerate(LABELS)}
 ID_TO_LABEL: dict[int, str] = {idx: label for idx, label in enumerate(LABELS)}
-
-
-@dataclass
-class FinetuneConfig:
-    model_name: str = "roberta-base"
-    cache_dir: str = "./argument_model-roberta"
-    output_dir: str = "./results/finetune-roberta"
-    max_length: int = 512
-    learning_rate: float = 2e-5
-    per_device_train_batch_size: int = 8
-    per_device_eval_batch_size: int = 8
-    num_train_epochs: int = 10
-    weight_decay: float = 0.01
-    warmup_ratio: float = 0.1
-    logging_steps: int = 100
-    early_stopping_patience: int = 3
-    save_total_limit: int = 2
 
 
 def _detect_device() -> str:

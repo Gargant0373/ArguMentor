@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
 from typing import Any
 
 import pandas as pd
@@ -9,17 +8,12 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix, f1_score
 from sklearn.pipeline import Pipeline
 
-from src.dataset import LABELS, get_data
-
-
-@dataclass
-class BaselineConfig:
-    max_features: int = 30000
-    ngram_range: tuple[int, int] = (1, 3)
-    min_df: int = 2
-    c: float = 1.0
-    max_iter: int = 1200
-    random_state: int = 42
+try:
+    from src.config import BaselineConfig
+    from src.dataset import LABELS, get_data
+except ModuleNotFoundError:
+    from config import BaselineConfig
+    from dataset import LABELS, get_data
 
 
 class BaselinePipeline:

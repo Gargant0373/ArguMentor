@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
@@ -20,26 +19,11 @@ from transformers import (
 )
 
 try:
+    from src.config import FinetuneRegressionConfig as FinetuneConfig
     from src.dataset import get_data_continuous
 except ModuleNotFoundError:
+    from config import FinetuneRegressionConfig as FinetuneConfig
     from dataset import get_data_continuous
-
-
-@dataclass
-class FinetuneConfig:
-    model_name: str = "roberta-base"
-    cache_dir: str = "./argument_model-roberta-regression"
-    output_dir: str = "./results/finetune-roberta-regression"
-    max_length: int = 512
-    learning_rate: float = 2e-5
-    per_device_train_batch_size: int = 8
-    per_device_eval_batch_size: int = 8
-    num_train_epochs: int = 7
-    weight_decay: float = 0.01
-    warmup_ratio: float = 0.1
-    logging_steps: int = 100
-    early_stopping_patience: int = 3
-    save_total_limit: int = 2
 
 
 def _detect_device() -> str:
