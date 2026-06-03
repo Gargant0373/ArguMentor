@@ -1,0 +1,10 @@
+input_text,label
+Topic: We should abandon television [SEP] Stance: pro [SEP] Argument: television is an outdated media we should abandon in order to educate people with new technologies,low
+Topic: We should ban the use of child actors [SEP] Stance: pro [SEP] Argument: child actors lose the sense of a proper childhood.,low
+Topic: The vow of celibacy should be abandoned [SEP] Stance: pro [SEP] Argument: to move with the modern times the vow of celibacy should be abandoned.,low
+Topic: We should ban cosmetic surgery [SEP] Stance: pro [SEP] Argument: botched surgeries can lead people to feel even worse about themselves with little chance to completely repair the damage.,medium
+Topic: We should cancel pride parades [SEP] Stance: con [SEP] Argument: the constitution allows for freedom of expression even if you dont personally approve of it,medium
+Topic: We should cancel pride parades [SEP] Stance: pro [SEP] Argument: we should cancel it because it provides a place for people against gay people to protest and beat them up. it could make an easy target for a hate crime.,medium
+Topic: Foster care brings more harm than good [SEP] Stance: con [SEP] Argument: orphanages cannot give kids the personal care that foster parents can.,high
+Topic: Homeschooling should be banned [SEP] Stance: pro [SEP] Argument: with homeschooling the kids don't have a set curriculum so could be learning nothing of value.,high
+"Topic: We should introduce compulsory voting [SEP] Stance: pro [SEP] Argument: the more people participate in the voting process, the better it is for democracy and society as a whole.",high

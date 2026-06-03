@@ -1,0 +1,6 @@
+split,metric,value
+test,accuracy,0.374
+test,f1_macro,0.3079371763678333
+test,mae,0.884
+test,off_by_one_acc,0.742
+test,qwk,0.17273328921244213

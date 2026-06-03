@@ -1,0 +1,4 @@
+input_text,label
+"Topic: We should ban the use of child actors [SEP] Stance: con [SEP] Argument: Child actors need to be in acting because many movies and shows have child parts in them,",low
+"Topic: We should legalize sex selection [SEP] Stance: con [SEP] Argument: this could cause imbalance in population, if a generation is selected as mainly male or female",medium
+Topic: We should subsidize student loans [SEP] Stance: pro [SEP] Argument: student loans should be subsidized to create a competent work force,high

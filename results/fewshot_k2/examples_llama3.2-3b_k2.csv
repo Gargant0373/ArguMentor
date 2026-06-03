@@ -1,0 +1,7 @@
+input_text,label
+Topic: We should ban the use of child actors [SEP] Stance: pro [SEP] Argument: child actors lose the sense of a proper childhood.,low
+Topic: We should subsidize space exploration [SEP] Stance: pro [SEP] Argument: to provide us with a better understanding of the universe.,low
+Topic: Homeopathy brings more harm than good [SEP] Stance: con [SEP] Argument: many people don't trust doctors and would rather take matters into their own hands; it's their body and they can try whatever homeopathic remedy they want,medium
+Topic: We should end mandatory retirement [SEP] Stance: pro [SEP] Argument: mandatory retirement only supports the company/organization and does nothing positive for the individuals forced to retire.,medium
+Topic: We should ban telemarketing [SEP] Stance: con [SEP] Argument: Telemarketing is an effective way for businesses to increase sales and profit.,high
+Topic: We should stop the development of autonomous cars [SEP] Stance: con [SEP] Argument: autonomous cars would greatly reduce traffic fatalities by eliminating human error.,high
