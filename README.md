@@ -129,7 +129,7 @@ Distribute each CSV to the corresponding annotator.
 python src/annotate_app.py --file data/annotator_N.csv
 ```
 
-Open [http://localhost:7860](http://localhost:7860). The UI shows one feedback item at a time. Rate **Relevance**, **Actionability**, and **Clarity** on a 1–3 scale, then click **Save & Next**. Scores are written to the CSV immediately — you can close and reopen the app at any time and it will resume from where you left off.
+Open [http://localhost:7860](http://localhost:7860). The UI shows one feedback item at a time. Rate **Relevance**, **Actionability**, and **Clarity** on a 1–5 scale, then click **Save & Next**. Scores are written to the CSV immediately — you can close and reopen the app at any time and it will resume from where you left off.
 
 Overlap items are marked with an **OVERLAP** badge; these are used to calculate inter-rater reliability.
 
@@ -142,8 +142,10 @@ Collect all four completed CSVs. IRR (Krippendorff's alpha) is calculated on row
 | Score | Meaning |
 |---|---|
 | 1 | Poor |
-| 2 | Partially acceptable |
-| 3 | Good |
+| 2 | Below Average |
+| 3 | Average / Fair|
+| 4 | Good |
+| 5 | Excellent |
 
 **Relevance** — Does the feedback address a real issue in the argument?  
 **Actionability** — Does the feedback give the author a concrete way to improve?  
