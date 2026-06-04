@@ -16,7 +16,7 @@ An argument-quality assistant that classifies arguments as **low**, **medium**, 
 ```bash
 # 1. Clone the repository and enter it
 git clone <repo-url>
-cd Argumentor
+cd ArguMentor
 
 # 2. Create and activate a virtual environment
 python -m venv .venv
@@ -125,8 +125,8 @@ Distribute each CSV to the corresponding annotator.
 
 ### Step 2 — Annotate (each annotator on their own machine)
 
-```bash
-python src/annotate_app.py --file data/annotator_N.csv
+```bash 
+python src/annotate_app.py --file src/data/annotator_N.csv #From ArguMentor
 ```
 
 Open [http://localhost:7860](http://localhost:7860). The UI shows one feedback item at a time. Rate **Relevance**, **Actionability**, and **Clarity** on a 1–5 scale, then click **Save & Next**. Scores are written to the CSV immediately — you can close and reopen the app at any time and it will resume from where you left off.
