@@ -31,9 +31,9 @@ from src.predictor import ArgumentPredictor
 # ---------------------------------------------------------------------------
 
 SEED = 42
-N_PER_CLASS = 80       # 80 × 3 classes = 240 total items
+N_PER_CLASS = 100       # 100 × 3 classes = 300 total items
 N_CALIB_PER_CLASS = 5  # 5 × 3 classes = 15 calibration items
-N_OVERLAP = 32         # ~8 per class; all 4 annotators see these
+N_OVERLAP = 40         # all 4 annotators see these rows
 N_ANNOTATORS = 4
 OUTPUT_DIR = Path("data")
 QUALITY_COLUMN = "WA"
