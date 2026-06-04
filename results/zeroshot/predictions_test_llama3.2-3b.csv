@@ -20,12 +20,12 @@ Topic: We should prohibit school prayer [SEP] Stance: pro [SEP] Argument: in the
 Topic: We should ban targeted killing [SEP] Stance: con [SEP] Argument: targeted killing keeps the country safe from would-be terrorists,medium,low
 Topic: We should abolish the Olympic Games [SEP] Stance: con [SEP] Argument: the olympic games inspires people around the world to take up sport and live healthier lives.,high,low
 Topic: We should ban missionary work [SEP] Stance: pro [SEP] Argument: missionaries have been sent in the past to the poorest communities in forein countries to essentially bribe them into joining a religion. this is immoral.,medium,low
-Topic: We should prohibit school prayer [SEP] Stance: pro [SEP] Argument: schools prayer should be prohibited as it takes children away from proper learning,low,medium
+Topic: We should prohibit school prayer [SEP] Stance: pro [SEP] Argument: schools prayer should be prohibited as it takes children away from proper learning,low,low
 "Topic: We should ban missionary work [SEP] Stance: pro [SEP] Argument: missionary work, while rewarding to those that choose that path, is fraught with danger to the missionary and the people they're trying to convert",medium,low
 Topic: Social media brings more harm than good [SEP] Stance: con [SEP] Argument: it provides people with connection. you can stay in touch with family or friends frequently and easily that without this platform might not be possible.,high,low
 Topic: We should ban private military companies [SEP] Stance: pro [SEP] Argument: private miltary companies are open to abusing their privileges because they are not under the same direct scrutiny as the regular military.,high,medium
 Topic: We should abolish the Olympic Games [SEP] Stance: con [SEP] Argument: the olympics is a great opportunity for countries of the world to compete on the world stage on and equal and fair footing and encourages peace and respect of all people,high,low
-"Topic: We should ban missionary work [SEP] Stance: pro [SEP] Argument: missionary work interferes with freedom of religion, as natives are forced to convert in order to receive aid.",medium,low
+"Topic: We should ban missionary work [SEP] Stance: pro [SEP] Argument: missionary work interferes with freedom of religion, as natives are forced to convert in order to receive aid.",medium,medium
 Topic: We should abolish the Olympic Games [SEP] Stance: pro [SEP] Argument: we should abolish the olympic games because in this day and age it can be a dangerous event which may be targeted due to terroristic reasons. it can leave both the athletes and surveyors in harm's way.,medium,low
 Topic: We should prohibit school prayer [SEP] Stance: con [SEP] Argument: school prayer is often a short exercise of personal freedom and generates good will and a positive atmosphere.,medium,low
 Topic: We should prohibit school prayer [SEP] Stance: pro [SEP] Argument: school prayer should be prohibited as in todays multi-faith and multi-cultural society it does not encourage diversity and tolerance,high,medium
@@ -43,7 +43,7 @@ Topic: We should ban targeted killing [SEP] Stance: con [SEP] Argument: targeted
 "Topic: We should ban algorithmic trading [SEP] Stance: pro [SEP] Argument: it often tries to make trades that are too large,",low,low
 Topic: Holocaust denial should be a criminal offence [SEP] Stance: con [SEP] Argument: Holocaust denial should not be a criminal offence since  the government can't enforce this law.,low,low
 Topic: We should prohibit women in combat [SEP] Stance: pro [SEP] Argument: we should prohibit women in combat because women aren't as efficient as men in combat,low,low
-Topic: Holocaust denial should be a criminal offence [SEP] Stance: con [SEP] Argument: a person has freedom of speech and making this a crime limits a person's freedom guaranteed under this amendment,low,low
+Topic: Holocaust denial should be a criminal offence [SEP] Stance: con [SEP] Argument: a person has freedom of speech and making this a crime limits a person's freedom guaranteed under this amendment,low,medium
 Topic: We should abolish the three-strikes laws [SEP] Stance: con [SEP] Argument: the three-strikes laws have been effective at deterring violent crime.,high,low
 Topic: Holocaust denial should be a criminal offence [SEP] Stance: pro [SEP] Argument: to try and cover up the evilness of it deserves punishment,low,low
 Topic: We should ban algorithmic trading [SEP] Stance: pro [SEP] Argument: algorithmic trading will cause major job loss.,low,low
@@ -103,7 +103,7 @@ Topic: We should abolish the three-strikes laws [SEP] Stance: pro [SEP] Argument
 Topic: We should abolish the Olympic Games [SEP] Stance: con [SEP] Argument: we should not abolish the olympic games since it brings in a lot of tourism and money. it also gives the hosting country a great deal of pride.,high,low
 Topic: We should abolish the Olympic Games [SEP] Stance: pro [SEP] Argument: olympic games support morally corrupt countries,medium,low
 Topic: The use of public defenders should be mandatory [SEP] Stance: pro [SEP] Argument: public defenders are an absolute must for low income individuals in need of legal help.,medium,high
-Topic: We should ban factory farming [SEP] Stance: con [SEP] Argument: factory farming should not be banned as it allows for cost effective production of valuable and necessary food,high,medium
+Topic: We should ban factory farming [SEP] Stance: con [SEP] Argument: factory farming should not be banned as it allows for cost effective production of valuable and necessary food,high,low
 Topic: We should adopt atheism [SEP] Stance: pro [SEP] Argument: fewer wars will arise since there will be no fighting over holy lands or differing religions.,high,low
 Topic: We should ban factory farming [SEP] Stance: con [SEP] Argument: factory farming should not be banned because it is an important source of cheap food,high,medium
 Topic: We should prohibit school prayer [SEP] Stance: pro [SEP] Argument: enforced prayer sessions in schools indoctrinate children into regressive belief systems and limit their ability to think independently for themselves and so should be removed from all schooling,high,high
@@ -113,7 +113,7 @@ Topic: We should legalize cannabis [SEP] Stance: pro [SEP] Argument: adults shou
 "Topic: We should adopt libertarianism [SEP] Stance: pro [SEP] Argument: government today has way too much influence in our daily lives; libertarianism seeks to reduce said interference, while possibly also reducing the amount of money the government spends.",high,medium
 Topic: We should ban missionary work [SEP] Stance: con [SEP] Argument: it helps small third world countries become more modernized.,medium,low
 Topic: We should ban factory farming [SEP] Stance: pro [SEP] Argument: factory farming is unnatural and promotes the spread of genetic defects,medium,high
-"Topic: We should adopt libertarianism [SEP] Stance: pro [SEP] Argument: libertarianism is a movement of freedom for citizens, it means empowerment of citizenship and we must adopt libertarianism to be able to grow economically and as a society",high,medium
+"Topic: We should adopt libertarianism [SEP] Stance: pro [SEP] Argument: libertarianism is a movement of freedom for citizens, it means empowerment of citizenship and we must adopt libertarianism to be able to grow economically and as a society",high,high
 Topic: We should abolish the three-strikes laws [SEP] Stance: con [SEP] Argument: repeat offenders are proven bad for the public.,low,low
 Topic: We should abolish the Olympic Games [SEP] Stance: pro [SEP] Argument: the olympic games cost host cities billions of dollars and truly serve only to enrich the lives of the ioc.,high,low
 "Topic: We should adopt libertarianism [SEP] Stance: pro [SEP] Argument: it is much better for people to act as individuals because it encourages business enterprise, libertarianism is essential",medium,low
@@ -151,19 +151,19 @@ Topic: We should legalize cannabis [SEP] Stance: pro [SEP] Argument: cannabis sh
 Topic: We should prohibit women in combat [SEP] Stance: pro [SEP] Argument: women in combat can provide a distraction and a liability.,medium,low
 Topic: The use of public defenders should be mandatory [SEP] Stance: con [SEP] Argument: public defenders should not be mandatory because that is a huge waste of money. some crimes are so obvious or so easy to defend that the defendant can take care of it themselves.,low,low
 Topic: We should ban factory farming [SEP] Stance: con [SEP] Argument: factory farming contributes to the economy by employing thousands of people,high,low
-"Topic: We should ban factory farming [SEP] Stance: pro [SEP] Argument: factory farming is harmful to the society, produces lower quality food and is an inhumane way in which to keep and kill livestock.",high,medium
+"Topic: We should ban factory farming [SEP] Stance: pro [SEP] Argument: factory farming is harmful to the society, produces lower quality food and is an inhumane way in which to keep and kill livestock.",high,high
 "Topic: We should ban algorithmic trading [SEP] Stance: pro [SEP] Argument: Algorithic trading is rare for people or companies to trade. It's too confusing and requires large purchase of stock.,",low,low
 Topic: We should prohibit school prayer [SEP] Stance: con [SEP] Argument: prohibiting school prayer would drive down standards in schools be eroding the essential feeling of belonging which is reinforced by this ritual carried out together as a group.,low,medium
 Topic: We should ban algorithmic trading [SEP] Stance: con [SEP] Argument: Algorithmic trading makes it easier to stay ahead in the market and not get blindsided by a sudden crash.,high,low
 Topic: We should ban private military companies [SEP] Stance: pro [SEP] Argument: all what they care is money and probably they kill innocent too because they do not care about anything but the money.,low,low
-"Topic: We should ban private military companies [SEP] Stance: pro [SEP] Argument: pmcs should be banned, as they are profiting from war and destruction. it is their interest to cause and prolong discord in the world.",medium,medium
+"Topic: We should ban private military companies [SEP] Stance: pro [SEP] Argument: pmcs should be banned, as they are profiting from war and destruction. it is their interest to cause and prolong discord in the world.",medium,high
 Topic: We should ban algorithmic trading [SEP] Stance: pro [SEP] Argument: algorithmic trading is slow to respond to what is going on in the real world,low,low
 Topic: Social media brings more harm than good [SEP] Stance: pro [SEP] Argument: spending too much time on social media weakens family relationships.,high,low
 Topic: We should prohibit school prayer [SEP] Stance: con [SEP] Argument: it should be up to the governors of a school if they want to teach the students with a slant to a particular religion. if parents are not happy they should choose another school.,low,low
 Topic: We should ban targeted killing [SEP] Stance: con [SEP] Argument: we shouldn't ban targeted killing because it helps the government put down extremely dangerous criminals,medium,high
 Topic: Social media brings more harm than good [SEP] Stance: con [SEP] Argument: social media allows people to stay connected to each other despite physical distance,high,low
 Topic: We should adopt atheism [SEP] Stance: pro [SEP] Argument: Atheism is a valid form of thinking just as many controlled religious.  We should adopt and accept it as we do other beliefs.,medium,medium
-Topic: We should ban factory farming [SEP] Stance: pro [SEP] Argument: industrial farms are harmful for the fertilizers they use and create artificial foods dangerous to our health,medium,high
+Topic: We should ban factory farming [SEP] Stance: pro [SEP] Argument: industrial farms are harmful for the fertilizers they use and create artificial foods dangerous to our health,medium,medium
 Topic: We should legalize cannabis [SEP] Stance: con [SEP] Argument: making it legal would just lead to worse drug usage,low,low
 Topic: We should ban private military companies [SEP] Stance: con [SEP] Argument: private military companies do some of the work our soldiers do so they can concentrate on more important roles,low,low
 "Topic: We should ban algorithmic trading [SEP] Stance: con [SEP] Argument: if algorithmic trading can be employed to maximise profits and minimise losses, it must be a good thing.",medium,low
@@ -186,7 +186,7 @@ Topic: We should legalize cannabis [SEP] Stance: pro [SEP] Argument: legalizing 
 Topic: We should abolish the Olympic Games [SEP] Stance: pro [SEP] Argument: we should abolish the olympic games because they have not done what they were meant to do which is create peace.  they have created more problems especially to those hosting them and are just beyond their time.,medium,low
 "Topic: We should adopt libertarianism [SEP] Stance: pro [SEP] Argument: we should adobt this because everyone has the right to express themselves individually without being judged,",medium,low
 Topic: We should ban factory farming [SEP] Stance: pro [SEP] Argument: factory farming keeps animals in cages being force fed to get more meat from them.  this is cruel treatment. stop this awful practice by banning factory farming.,high,low
-Topic: We should ban factory farming [SEP] Stance: pro [SEP] Argument: its animal cruelty and can risk disease that can spread quickly,medium,high
+Topic: We should ban factory farming [SEP] Stance: pro [SEP] Argument: its animal cruelty and can risk disease that can spread quickly,medium,low
 Topic: We should ban factory farming [SEP] Stance: con [SEP] Argument: the market should determine whether factory farming exists,low,low
 Topic: We should prohibit school prayer [SEP] Stance: con [SEP] Argument: students should be given time to pray in school if it will help them with their day,high,low
 Topic: We should abolish the Olympic Games [SEP] Stance: pro [SEP] Argument: olympic games should be abolished because they only encourage rivalries between nations who should be trying to nurture peace with each other.,low,low
@@ -197,7 +197,7 @@ Topic: We should abolish the Olympic Games [SEP] Stance: pro [SEP] Argument: The
 Topic: We should abolish the three-strikes laws [SEP] Stance: con [SEP] Argument: three strikes allows someone to make a genuine mistake and not be punished as harshly right away.,low,medium
 Topic: We should ban algorithmic trading [SEP] Stance: con [SEP] Argument: algorithmic trading is new technology that allows advances in the stock market progress while maximizing profits with less human intervention allowing for more precise trading.,high,low
 "Topic: We should adopt atheism [SEP] Stance: con [SEP] Argument: people have the freedom to choose any religion, atheism should not be forced upon people",medium,medium
-"Topic: Social media brings more harm than good [SEP] Stance: pro [SEP] Argument: social media allows people to bully each other from anywhere, meaning students would have no escape for their school bullies, even at home.",low,medium
+"Topic: Social media brings more harm than good [SEP] Stance: pro [SEP] Argument: social media allows people to bully each other from anywhere, meaning students would have no escape for their school bullies, even at home.",low,low
 Topic: We should ban missionary work [SEP] Stance: pro [SEP] Argument: we should ban it because it helps less privileged countries and teaches them important life skills.,low,medium
 Topic: We should adopt libertarianism [SEP] Stance: pro [SEP] Argument: Libertarianism reduces problems like police brutality by reducing the power of police in the state.,medium,high
 Topic: Holocaust denial should be a criminal offence [SEP] Stance: pro [SEP] Argument: denying something that happened and was awful should not be tolerated,low,low
@@ -219,17 +219,17 @@ Topic: Social media brings more harm than good [SEP] Stance: pro [SEP] Argument:
 Topic: Holocaust denial should be a criminal offence [SEP] Stance: con [SEP] Argument: holocaust denial should not be a criminal offence because if people don't want to believe something happened they shouldn't be punished because of it.,high,low
 Topic: We should ban missionary work [SEP] Stance: con [SEP] Argument: missionary work that doesn't attempt to preach provides assistance where no one else does,low,low
 "Topic: We should ban private military companies [SEP] Stance: con [SEP] Argument: if they do the job and they do, can`t see any problem in it.",low,low
-"Topic: Social media brings more harm than good [SEP] Stance: pro [SEP] Argument: bad cuts deeper than good. though social media has good aspects, it is the bad that cuts deeper than the good, therefore, causing more harm than good.",low,medium
+"Topic: Social media brings more harm than good [SEP] Stance: pro [SEP] Argument: bad cuts deeper than good. though social media has good aspects, it is the bad that cuts deeper than the good, therefore, causing more harm than good.",low,low
 Topic: We should prohibit school prayer [SEP] Stance: con [SEP] Argument: the lack of prayer and god in schools is what has contributed to our country's moral decline over the past few decades.,medium,low
 Topic: We should ban missionary work [SEP] Stance: con [SEP] Argument: we shouldn't ban missionary work as no one else will do it,medium,low
 Topic: We should adopt atheism [SEP] Stance: pro [SEP] Argument: not everybody believes in or practices a religion so we should adopt atheism for them,low,low
 "Topic: Holocaust denial should be a criminal offence [SEP] Stance: pro [SEP] Argument: Holocaust denial should be a criminal offence because it is an implicit endorsement of mass murder, like yelling 'kill all Jews' would be illegal.",low,medium
 Topic: We should adopt libertarianism [SEP] Stance: con [SEP] Argument: libertarianism puts too much focus on the individual and can lead to selfishness and not enough focus on society as a whole.,medium,low
-Topic: We should prohibit women in combat [SEP] Stance: con [SEP] Argument: Equal rights for women makes it obvious that they also have the equal right to be part of our combat forces.,medium,high
+Topic: We should prohibit women in combat [SEP] Stance: con [SEP] Argument: Equal rights for women makes it obvious that they also have the equal right to be part of our combat forces.,medium,medium
 "Topic: We should ban missionary work [SEP] Stance: con [SEP] Argument: missionary work benefits communities above the religion it teaches, they help make homes, teach, etc.",medium,low
 "Topic: We should prohibit school prayer [SEP] Stance: con [SEP] Argument: thats what is wrong with the schools today, they took god out.",low,low
-Topic: We should ban private military companies [SEP] Stance: con [SEP] Argument: in a time of defence budget cut's private military companies have proven to be a required resource for supporting operations.,medium,medium
-Topic: We should prohibit women in combat [SEP] Stance: con [SEP] Argument: we should not prohibit women in combat because women can be perform just as well as men can.,high,medium
+Topic: We should ban private military companies [SEP] Stance: con [SEP] Argument: in a time of defence budget cut's private military companies have proven to be a required resource for supporting operations.,medium,low
+Topic: We should prohibit women in combat [SEP] Stance: con [SEP] Argument: we should not prohibit women in combat because women can be perform just as well as men can.,high,low
 Topic: We should ban private military companies [SEP] Stance: con [SEP] Argument: we shouldn't ban private military companies because it will leave people without a job,medium,low
 "Topic: We should prohibit school prayer [SEP] Stance: con [SEP] Argument: prayer in school is also protected by the constitution, people have a right to practice their religion",medium,low
 "Topic: Holocaust denial should be a criminal offence [SEP] Stance: pro [SEP] Argument: Holocaust denial should be a criminal offence because the defense of a free society requires being intolerant of intolerance, or intolerance may be able to choke out tolerance, like it did in the 1930s.",medium,high
@@ -278,7 +278,7 @@ Topic: Social media brings more harm than good [SEP] Stance: pro [SEP] Argument:
 "Topic: We should prohibit school prayer [SEP] Stance: con [SEP] Argument: the school prayer encourages a sense of belonging and cameraderie within the school, as well as promoting a sense of belonging",medium,low
 "Topic: We should adopt libertarianism [SEP] Stance: con [SEP] Argument: people need rules, laws, and boundries because without them there will be anarchy.",low,low
 Topic: We should adopt atheism [SEP] Stance: con [SEP] Argument: Without god you can't be a good person,low,low
-Topic: We should adopt atheism [SEP] Stance: con [SEP] Argument: people cannot simply be forced to abandon their religious beliefs and practices that guide their daily lives and provide comfort.,low,medium
+Topic: We should adopt atheism [SEP] Stance: con [SEP] Argument: people cannot simply be forced to abandon their religious beliefs and practices that guide their daily lives and provide comfort.,low,low
 Topic: We should adopt libertarianism [SEP] Stance: pro [SEP] Argument: we should adopt libertarianism because it gives citizens more freedom to live their live how they want,medium,medium
 Topic: We should abolish the three-strikes laws [SEP] Stance: con [SEP] Argument: the three-strikes law removes repeat offenders from society and stops them from committing further crimes against the population.,high,low
 Topic: We should abolish the Olympic Games [SEP] Stance: pro [SEP] Argument: the funding required to train athletes and host the games is a huge waste of public resources. this could be better spent on life saving and life changing services,medium,low
@@ -293,7 +293,7 @@ Topic: We should adopt atheism [SEP] Stance: pro [SEP] Argument: by not being te
 Topic: We should adopt libertarianism [SEP] Stance: con [SEP] Argument: Libertarianism would lead to economic fluctuations because there would be no monetary or fiscal policy to regulate the market.,high,low
 "Topic: We should abolish the Olympic Games [SEP] Stance: pro [SEP] Argument: they are a waste of money, building hype for a short event. money will be better spent elsewhere",high,low
 "Topic: We should ban algorithmic trading [SEP] Stance: pro [SEP] Argument: Algorithmic trading allows computers to buy and sell assets suddenly and in massive quantities, creating shifts in the market and making human trading difficult.",high,medium
-"Topic: We should prohibit women in combat [SEP] Stance: con [SEP] Argument: further progress must be made in ensuring and promoting the rights of women in all social fields, so it is a right to participate where women feel comfortable",low,low
+"Topic: We should prohibit women in combat [SEP] Stance: con [SEP] Argument: further progress must be made in ensuring and promoting the rights of women in all social fields, so it is a right to participate where women feel comfortable",low,medium
 "Topic: We should abolish the three-strikes laws [SEP] Stance: con [SEP] Argument: the three strikes law keeps repeat offenders where they belong, in prison.",medium,low
 Topic: We should prohibit women in combat [SEP] Stance: con [SEP] Argument: women are just as capable of being in combat with proper training,medium,medium
 "Topic: We should prohibit women in combat [SEP] Stance: pro [SEP] Argument: If women in combat are captured by the enemy, they could be raped",low,low
@@ -301,7 +301,7 @@ Topic: The use of public defenders should be mandatory [SEP] Stance: pro [SEP] A
 Topic: The use of public defenders should be mandatory [SEP] Stance: con [SEP] Argument: it would be unfair to defense attorneys who have invested a lot of time and money honing their craft,low,low
 Topic: We should prohibit women in combat [SEP] Stance: pro [SEP] Argument: women in combat  can cause problems.,low,low
 "Topic: We should ban factory farming [SEP] Stance: pro [SEP] Argument: Animals have feelings, emotions and can feel pain too. Keeping them locked up in such vile conditions, living out their entire lives without any freedom until they die or are killed is totally inhumane.",high,high
-Topic: We should ban private military companies [SEP] Stance: pro [SEP] Argument: they may sell weapons to countries that would use them inappropriately,low,medium
+Topic: We should ban private military companies [SEP] Stance: pro [SEP] Argument: they may sell weapons to countries that would use them inappropriately,low,high
 "Topic: We should ban missionary work [SEP] Stance: pro [SEP] Argument: Missionaries aim to the core of a person's set of beliefes and morals, and wishes to change them. That's extremely immoral.",low,low
 Topic: We should ban factory farming [SEP] Stance: pro [SEP] Argument: factory farming should be banned because there is not enough government regulation and has allowed for many widespread illnesses because of no regulation.,high,medium
 Topic: We should adopt libertarianism [SEP] Stance: pro [SEP] Argument: maximizing freedom should be our utmost priority and libertarianism is the best way to do that.,high,low
@@ -368,7 +368,7 @@ Topic: We should abolish the three-strikes laws [SEP] Stance: con [SEP] Argument
 Topic: We should ban algorithmic trading [SEP] Stance: con [SEP] Argument: algorithmic trading is more efficient,medium,low
 Topic: We should prohibit school prayer [SEP] Stance: con [SEP] Argument: if we really want a pacifist and compassionate world we should not prohibit school prayer because with it we can achieve peace anywhere in the world,medium,low
 Topic: Social media brings more harm than good [SEP] Stance: pro [SEP] Argument: social media  without proper investment in moderation by the companies themselves allows hate groups to fester and spread their message to a wider audience they would ever have access to without it.,low,medium
-Topic: The use of public defenders should be mandatory [SEP] Stance: con [SEP] Argument: public defenders should not be mandatory for people who already plead guilty to crimes they've committed,low,medium
+Topic: The use of public defenders should be mandatory [SEP] Stance: con [SEP] Argument: public defenders should not be mandatory for people who already plead guilty to crimes they've committed,low,high
 Topic: We should ban missionary work [SEP] Stance: pro [SEP] Argument: mormon missionaries are given meager allowances and exploited by their wealthy church.,medium,low
 Topic: We should adopt libertarianism [SEP] Stance: con [SEP] Argument: libertarianism would take away a lot of the rules that stop people being free.,low,low
 Topic: We should legalize cannabis [SEP] Stance: con [SEP] Argument: cannabis creates a stoner subculture which is a blight on our society.,low,low
@@ -382,12 +382,12 @@ Topic: We should ban algorithmic trading [SEP] Stance: con [SEP] Argument: ai is
 Topic: We should prohibit women in combat [SEP] Stance: con [SEP] Argument: women shouldnt be prohibited in combat they have made their choice to serve their country and know what they are signing up for. the gender gap will be even more divided if we start making allowances for them,medium,low
 Topic: We should ban missionary work [SEP] Stance: con [SEP] Argument: spreading the faith is older than law and should be allowed to continue,medium,low
 Topic: The use of public defenders should be mandatory [SEP] Stance: pro [SEP] Argument: the law must be followed and using public defenders should be obligatory in any case.,medium,high
-Topic: We should adopt libertarianism [SEP] Stance: pro [SEP] Argument: libertarianism would help society even out.,low,medium
+Topic: We should adopt libertarianism [SEP] Stance: pro [SEP] Argument: libertarianism would help society even out.,low,low
 Topic: We should ban targeted killing [SEP] Stance: con [SEP] Argument: if a group of people are a threat to our welfare it should be allowed to do whatever necessary to eliminate the problem.,medium,low
 Topic: Holocaust denial should be a criminal offence [SEP] Stance: pro [SEP] Argument: Most individuals don't have access to the tools needed to distinguish between the lies told by Holocaust deniers and the truth and so it is the government's duty to stop the lies from being told.,low,medium
 Topic: Social media brings more harm than good [SEP] Stance: con [SEP] Argument: social media allows people that are shy to form friendships they otherwise wouldn’t have.,medium,low
 "Topic: We should ban factory farming [SEP] Stance: con [SEP] Argument: factory farming decreases money spent to raise the animals, therefore passing along savings to the consumer",medium,low
-Topic: We should ban factory farming [SEP] Stance: pro [SEP] Argument: this is an inhumane way to raise animals for consumption.,high,high
+Topic: We should ban factory farming [SEP] Stance: pro [SEP] Argument: this is an inhumane way to raise animals for consumption.,high,low
 "Topic: We should abolish the Olympic Games [SEP] Stance: con [SEP] Argument: we should not abolish the olympic games, they inspire athletes and represent what the human race can achieve",medium,low
 "Topic: Holocaust denial should be a criminal offence [SEP] Stance: con [SEP] Argument: as horrible as the holocaust was, you cannot punish someone who denies it happened",high,low
 Topic: We should prohibit school prayer [SEP] Stance: pro [SEP] Argument: in secular schools there can be multiple religions so it would be unfair to ask children of any other religion to participate in a school prayer that bears no relation to their own religion.,high,medium
@@ -407,7 +407,7 @@ Topic: We should abolish the Olympic Games [SEP] Stance: pro [SEP] Argument: The
 "Topic: We should prohibit school prayer [SEP] Stance: con [SEP] Argument: everyone should be allowed to practice their own faith wherever they are, many people rely on prayer to manage stressful situations such as exams and without prayer mental health issues are likely to increase.",low,medium
 Topic: We should adopt libertarianism [SEP] Stance: pro [SEP] Argument: Libertarianism is just taking our freedoms to the next level and it would be better than the democracy that we have.,low,low
 Topic: Holocaust denial should be a criminal offence [SEP] Stance: con [SEP] Argument: freedom of speech and thought should be protected,medium,low
-Topic: We should abolish the three-strikes laws [SEP] Stance: con [SEP] Argument: the three-strikes laws should not be abolished because we should not keep letting people re-offend when they clearly need to either be in treatment or in jail/prison,medium,low
+Topic: We should abolish the three-strikes laws [SEP] Stance: con [SEP] Argument: the three-strikes laws should not be abolished because we should not keep letting people re-offend when they clearly need to either be in treatment or in jail/prison,medium,medium
 "Topic: We should adopt libertarianism [SEP] Stance: con [SEP] Argument: libertarianism decreases government regulation of industry, which decreases consumer protection in the marketplace",medium,low
 Topic: We should ban private military companies [SEP] Stance: pro [SEP] Argument: the do not abide by the same rules and regulations of a government run military and need to be banned.,medium,high
 Topic: We should prohibit women in combat [SEP] Stance: con [SEP] Argument: Women belong in combat just as much as men do because they are trained just as hard as men.,low,low
@@ -454,7 +454,7 @@ Topic: We should ban algorithmic trading [SEP] Stance: pro [SEP] Argument: algor
 Topic: We should abolish the Olympic Games [SEP] Stance: pro [SEP] Argument: the olympic games are an easy target for terrorists and should be abolished,medium,low
 Topic: We should ban targeted killing [SEP] Stance: con [SEP] Argument: I believe this is acceptable when there is a tyrant or despot who is a real threat and it saves the taxpayer money rather than putting them in prison.,medium,medium
 Topic: We should adopt atheism [SEP] Stance: pro [SEP] Argument: adopting atheism would take one cause of wars out of the equation since many wars are based on the hatred of one religion for another.,medium,medium
-Topic: We should ban factory farming [SEP] Stance: pro [SEP] Argument: the animals are larger but that contain more fat which is bad for your health,low,medium
+Topic: We should ban factory farming [SEP] Stance: pro [SEP] Argument: the animals are larger but that contain more fat which is bad for your health,low,low
 Topic: Social media brings more harm than good [SEP] Stance: con [SEP] Argument: social media allows exploited and discriminated groups of people to show the suffering they're into for the world to take compassion and get help,high,low
 "Topic: We should ban algorithmic trading [SEP] Stance: con [SEP] Argument: algorithmic trading has helped the trading industry due to the high level of accuracy that it provides, there is no human error",medium,low
 Topic: We should legalize cannabis [SEP] Stance: con [SEP] Argument: cannabis use makes people lazy and lethargic,low,low
@@ -468,7 +468,7 @@ Topic: We should abolish the Olympic Games [SEP] Stance: pro [SEP] Argument: the
 Topic: Holocaust denial should be a criminal offence [SEP] Stance: con [SEP] Argument: People have the right to free speech even if their perspectives are vile and abhorrent. This means the state can't criminalize holocaust denial.,high,medium
 "Topic: We should abolish the Olympic Games [SEP] Stance: pro [SEP] Argument: the olympic games pits countries against each other and can increase levels of discrimination when athletes compete, so therefore it should be banned.",low,low
 Topic: We should prohibit women in combat [SEP] Stance: con [SEP] Argument: We should not prohibit women in combat since there are many physically fit women that are able to handle the physical demands of combat. It should be a choice as long as you pass the physical tests.,high,medium
-Topic: Holocaust denial should be a criminal offence [SEP] Stance: con [SEP] Argument: criminalizing who denies the holocaust is unconstitutional and violates the 1st amendment,medium,medium
+Topic: Holocaust denial should be a criminal offence [SEP] Stance: con [SEP] Argument: criminalizing who denies the holocaust is unconstitutional and violates the 1st amendment,medium,low
 "Topic: We should ban algorithmic trading [SEP] Stance: con [SEP] Argument: it makes trading more simple to use, it's very beneficial to those who are new to trading.",medium,low
 Topic: We should ban factory farming [SEP] Stance: con [SEP] Argument: factory farming helps keep the cost of meat lower.,high,low
 Topic: We should ban missionary work [SEP] Stance: con [SEP] Argument: missionary work often has an outreach aspect that goes beyond religion including help with basic needs.,high,low

@@ -5,15 +5,17 @@ from typing import Any
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, confusion_matrix, f1_score
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, f1_score
 from sklearn.pipeline import Pipeline
 
 try:
     from src.config import BaselineConfig
     from src.dataset import LABELS, get_data
+    from src.utils.metrics import ordinal_metrics
 except ModuleNotFoundError:
     from config import BaselineConfig
     from dataset import LABELS, get_data
+    from utils.metrics import ordinal_metrics
 
 
 class BaselinePipeline:
@@ -51,11 +53,16 @@ class BaselinePipeline:
 
     def evaluate(self, x: pd.Series, y: pd.Series) -> dict[str, Any]:
         y_pred = self.model.predict(x)
+        y_true_list, y_pred_list = list(y), list(y_pred)
         return {
-            "accuracy": float(accuracy_score(y, y_pred)),
-            "f1_macro": float(f1_score(y, y_pred, average="macro", zero_division=0)),
-            "confusion_matrix": confusion_matrix(y, y_pred, labels=LABELS).tolist(),
+            "accuracy": float(accuracy_score(y_true_list, y_pred_list)),
+            "f1_macro": float(f1_score(y_true_list, y_pred_list, average="macro", zero_division=0)),
+            **ordinal_metrics(y_true_list, y_pred_list),
+            "confusion_matrix": confusion_matrix(y_true_list, y_pred_list, labels=LABELS).tolist(),
+            "classification_report": classification_report(y_true_list, y_pred_list, labels=LABELS, zero_division=0),
             "labels": LABELS,
+            "y_true": y_true_list,
+            "y_pred": y_pred_list,
         }
 
     def run(self) -> dict[str, Any]:

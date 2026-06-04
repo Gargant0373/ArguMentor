@@ -19,9 +19,11 @@ from transformers import (
 try:
     from src.config import FinetuneConfig
     from src.dataset import LABELS, get_data
+    from src.utils.metrics import ordinal_metrics
 except ModuleNotFoundError:
     from config import FinetuneConfig
     from dataset import LABELS, get_data
+    from utils.metrics import ordinal_metrics
 
 LABEL_TO_ID: dict[str, int] = {label: idx for idx, label in enumerate(LABELS)}
 ID_TO_LABEL: dict[int, str] = {idx: label for idx, label in enumerate(LABELS)}
@@ -158,7 +160,8 @@ class FinetunePipeline:
         true_labels = pred_output.label_ids
         label_names = [ID_TO_LABEL[i] for i in range(len(LABELS))]
 
-        mean_ordinal_distance = float(np.mean(np.abs(pred_labels.astype(int) - true_labels.astype(int))))
+        true_str = [ID_TO_LABEL[i] for i in true_labels]
+        pred_str = [ID_TO_LABEL[i] for i in pred_labels]
 
         pairwise_error_rates: dict[str, float] = {}
         for true_id, true_name in ID_TO_LABEL.items():
@@ -174,7 +177,7 @@ class FinetunePipeline:
         return {
             "accuracy": float(accuracy_score(true_labels, pred_labels)),
             "f1_macro": float(f1_score(true_labels, pred_labels, average="macro", zero_division=0)),
-            "mean_ordinal_distance": mean_ordinal_distance,
+            **ordinal_metrics(true_str, pred_str),
             "pairwise_error_rates": pairwise_error_rates,
             "confusion_matrix": confusion_matrix(
                 true_labels, pred_labels, labels=list(range(len(LABELS)))
@@ -183,6 +186,8 @@ class FinetunePipeline:
                 true_labels, pred_labels, target_names=label_names
             ),
             "labels": LABELS,
+            "y_true": true_str,
+            "y_pred": pred_str,
         }
 
     def run(self) -> dict[str, Any]:
