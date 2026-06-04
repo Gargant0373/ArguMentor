@@ -38,6 +38,7 @@ _FOCUS_COLORS = {
     "Structure": "#e67e22",
     "Relevance": "#1abc9c",
     "Logic": "#e74c3c",
+    "Warrant": "#2980b9",
     "General": "#7f8c8d",
 }
 
@@ -54,8 +55,21 @@ def _quality_html(quality: str) -> str:
     )
 
 
-def _feedback_html(focus: str, suggestion: str, reasoning: str) -> str:
+def _feedback_html(focus: str, suggestion: str, reasoning: str, strength: str = "", on_topic: bool = True) -> str:
     badge_color = _FOCUS_COLORS.get(focus, "#7f8c8d")
+    off_topic_banner = (
+        "<div style='margin-bottom:10px; padding:8px 12px; background:#fff3cd; "
+        "border-left:3px solid #f39c12; border-radius:4px; color:#856404; font-size:0.9em;'>"
+        "⚠️ <strong>Potentially off-topic:</strong> This argument may not address the stated topic or stance. "
+        "The feedback below may be less reliable."
+        "</div>"
+    ) if not on_topic else ""
+    strength_block = (
+        f"<div style='margin-bottom:10px; padding:8px 12px; background:#d4edda; "
+        f"border-left:3px solid #27ae60; border-radius:4px; color:#155724; font-size:0.9em;'>"
+        f"<strong>What works:</strong> {strength}"
+        f"</div>"
+    ) if strength else ""
     reasoning_block = (
         f"<div style='margin-top:10px; padding:8px 12px; "
         f"background-color:{badge_color}1a; "
@@ -66,6 +80,8 @@ def _feedback_html(focus: str, suggestion: str, reasoning: str) -> str:
     ) if reasoning else ""
     return (
         f"<div style='border:1px solid #ddd; border-radius:8px; padding:16px; background:#fff;'>"
+        f"{off_topic_banner}"
+        f"{strength_block}"
         f"<span style='display:inline-block; background:{badge_color}; color:#fff; "
         f"font-size:0.8em; font-weight:bold; padding:3px 10px; border-radius:12px; "
         f"margin-bottom:10px;'>{focus.upper() if focus else 'FEEDBACK'}</span>"
@@ -144,10 +160,13 @@ def _render(idx: int) -> tuple:
     topic_val = str(row.get("topic", ""))
     stance_val = str(row.get("stance", ""))
     argument_val = str(row.get("argument", ""))
+    on_topic_val = str(row.get("on_topic", "True")).lower() not in ("false", "0", "no")
     feedback = _feedback_html(
-        str(row.get("focus_area", "")),
-        str(row.get("suggestion", "")),
-        str(row.get("reasoning", "")),
+        focus=str(row.get("focus_area", "")),
+        suggestion=str(row.get("suggestion", "")),
+        reasoning=str(row.get("reasoning", "")),
+        strength=str(row.get("strength", "")),
+        on_topic=on_topic_val,
     )
     progress = _progress_html(idx, _state.total, _state.done)
 

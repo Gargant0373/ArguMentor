@@ -71,6 +71,17 @@ This trains (or loads from cache) the TF-IDF + Logistic Regression baseline, the
 
 ---
 
+## Running metrics and plots
+
+To obtain the metrics and plots for all the models run:
+
+```bash
+python src/evaluate_models.py
+```
+
+
+---
+
 ## Project Structure
 
 ```

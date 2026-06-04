@@ -1,0 +1,6 @@
+metric,value
+accuracy,0.398
+f1_macro,0.3480066348841795
+mae,0.806
+off_by_one_acc,0.796
+qwk,0.11711659297184085

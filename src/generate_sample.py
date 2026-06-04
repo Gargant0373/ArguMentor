@@ -48,8 +48,9 @@ def _generate_feedback_safe(
     stance: str,
     argument: str,
     predicted_quality: str,
-) -> dict[str, str]:
+) -> dict:
     """Call the feedback generator with retries; return empty dict on failure."""
+    _empty = {"on_topic": True, "strength": "", "focus_area": "", "suggestion": "", "reasoning": ""}
     for attempt in range(FEEDBACK_RETRIES + 1):
         try:
             return gen.generate(
@@ -61,9 +62,9 @@ def _generate_feedback_safe(
         except Exception as exc:
             if attempt == FEEDBACK_RETRIES:
                 print(f"  [WARN] Feedback failed after {FEEDBACK_RETRIES + 1} attempts: {exc}")
-                return {"focus_area": "", "suggestion": "", "reasoning": ""}
+                return _empty
             time.sleep(1)
-    return {"focus_area": "", "suggestion": "", "reasoning": ""}
+    return _empty
 
 
 def main() -> None:
@@ -143,7 +144,7 @@ def main() -> None:
     # ------------------------------------------------------------------
     print("Generating feedback (this may take a while)...")
     gen = FeedbackGenerator(model="llama3.2:3b")
-    focus_areas, suggestions, reasonings = [], [], []
+    on_topics, strengths, focus_areas, suggestions, reasonings = [], [], [], [], []
 
     total = len(sample_df)
     for idx, (_, row) in enumerate(sample_df.iterrows(), 1):
@@ -156,10 +157,14 @@ def main() -> None:
             argument=str(row["argument"]),
             predicted_quality=str(row["predicted_quality"]),
         )
+        on_topics.append(fb.get("on_topic", True))
+        strengths.append(fb.get("strength", ""))
         focus_areas.append(fb.get("focus_area", ""))
         suggestions.append(fb.get("suggestion", ""))
         reasonings.append(fb.get("reasoning", ""))
 
+    sample_df["on_topic"] = on_topics
+    sample_df["strength"] = strengths
     sample_df["focus_area"] = focus_areas
     sample_df["suggestion"] = suggestions
     sample_df["reasoning"] = reasonings
@@ -182,7 +187,7 @@ def main() -> None:
     # ------------------------------------------------------------------
     output_columns = [
         "item_id", "topic", "stance_str", "argument", "predicted_quality",
-        "focus_area", "suggestion", "reasoning", "is_overlap",
+        "on_topic", "strength", "focus_area", "suggestion", "reasoning", "is_overlap",
         "relevance", "actionability", "clarity", "notes",
     ]
 
@@ -199,11 +204,9 @@ def main() -> None:
         # Rename for clarity
         annotator_df = annotator_df.rename(columns={"stance_str": "stance"})
 
-        out_cols = [c for c in output_columns if c in annotator_df.columns or c == "stance"]
-        # stance_str → stance in rename, adjust:
         final_cols = [
             "item_id", "topic", "stance", "argument", "predicted_quality",
-            "focus_area", "suggestion", "reasoning", "is_overlap",
+            "on_topic", "strength", "focus_area", "suggestion", "reasoning", "is_overlap",
             "relevance", "actionability", "clarity", "notes",
         ]
 

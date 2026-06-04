@@ -5,6 +5,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
+import pandas as pd
+
 try:
     from src.baseline import run_baseline
     from src.baseline2 import run_baseline2
@@ -24,18 +26,38 @@ except ModuleNotFoundError:
 
 _METRICS = ["accuracy", "f1_macro", "mae", "off_by_one_acc", "qwk"]
 _REGRESSION_EXTRAS = ["pearson", "spearman", "rmse"]
+_ALL_SCALAR_METRICS = _METRICS + _REGRESSION_EXTRAS
+
+
+def _save_metrics_csv(data: dict[str, Any], out_dir: Path | str) -> None:
+    """Save all scalar metrics for a single model to a long-format CSV."""
+    out_dir = Path(out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    rows = [{"metric": m, "value": data[m]} for m in _ALL_SCALAR_METRICS if m in data]
+    pd.DataFrame(rows).to_csv(out_dir / "metrics.csv", index=False)
+    print(f"  Metrics CSV saved to {out_dir}/metrics.csv")
+
+
+def _save_comparison_csv(results: dict[str, dict[str, Any]], out_dir: Path | str) -> None:
+    """Save the comparison table as a wide-format CSV (one row per model)."""
+    out_dir = Path(out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    rows = [
+        {"model": name, **{m: data.get(m) for m in _ALL_SCALAR_METRICS}}
+        for name, data in results.items()
+    ]
+    pd.DataFrame(rows).to_csv(out_dir / "comparison.csv", index=False)
+    print(f"  Comparison CSV saved to {out_dir}/comparison.csv")
 
 
 def _print_table(results: dict[str, dict[str, Any]]) -> None:
     names = list(results.keys())
     col_w = 14
     name_w = 17
-
     header = f"{'Metric':<{name_w}}" + "".join(f" {n:<{col_w}}" for n in names)
     print(header)
     print("-" * len(header))
-
-    for metric in _METRICS + _REGRESSION_EXTRAS:
+    for metric in _ALL_SCALAR_METRICS:
         row = f"{metric:<{name_w}}"
         for data in results.values():
             val = f"{data[metric]:.4f}" if metric in data else "N/A"
@@ -43,11 +65,7 @@ def _print_table(results: dict[str, dict[str, Any]]) -> None:
         print(row)
 
 
-def _save_model_plots(
-    data: dict[str, Any],
-    out_dir: str | Path,
-    model_slug: str,
-) -> None:
+def _save_model_plots(data: dict[str, Any], out_dir: str | Path, model_slug: str) -> None:
     """Save individual per-model plots if y_true/y_pred are available."""
     if "y_true" not in data or "y_pred" not in data:
         return
@@ -63,6 +81,7 @@ def main(
         k_values = [1, 2, 3]
 
     results: dict[str, dict[str, Any]] = {}
+    model_slug = ollama_model.replace(":", "-")
 
     # --- Baselines ---
     print("\n" + "=" * 60)
@@ -70,12 +89,14 @@ def main(
     print("=" * 60)
     results["LogReg"] = run_baseline()["test"]
     _save_model_plots(results["LogReg"], "./results/logreg", "logreg")
+    _save_metrics_csv(results["LogReg"], "./results/logreg")
 
     print("\n" + "=" * 60)
     print("TF-IDF + Linear SVM")
     print("=" * 60)
     results["LinearSVM"] = run_baseline2()["test"]
     _save_model_plots(results["LinearSVM"], "./results/linearsvm", "linearsvm")
+    _save_metrics_csv(results["LinearSVM"], "./results/linearsvm")
 
     # --- RoBERTa ---
     print("\n" + "=" * 60)
@@ -83,18 +104,21 @@ def main(
     print("=" * 60)
     results["RoBERTa-Clf"] = run_finetune()["test"]
     _save_model_plots(results["RoBERTa-Clf"], "./results/roberta_classification", "roberta-clf")
+    _save_metrics_csv(results["RoBERTa-Clf"], "./results/roberta_classification")
 
     print("\n" + "=" * 60)
     print("RoBERTa Regression (mapped to low/medium/high)")
     print("=" * 60)
     results["RoBERTa-Reg"] = run_finetune_regression()["test"]
     _save_model_plots(results["RoBERTa-Reg"], "./results/roberta_regression", "roberta-reg")
+    _save_metrics_csv(results["RoBERTa-Reg"], "./results/roberta_regression")
 
-    # --- Ollama (these save their own plots internally to results/zeroshot and results/fewshot_k{k}) ---
+    # --- Ollama (pipelines save plots/predictions internally) ---
     print("\n" + "=" * 60)
     print(f"Zero-Shot  ({ollama_model})")
     print("=" * 60)
     results["Zero-Shot"] = run_zeroshot_ollama(model=ollama_model, max_samples=max_samples)["test"]
+    _save_metrics_csv(results["Zero-Shot"], "./results/zeroshot")
 
     for k in k_values:
         label = f"Few-Shot k={k}"
@@ -104,6 +128,7 @@ def main(
         results[label] = run_fewshot_ollama(
             model=ollama_model, k_per_class=k, max_samples=max_samples
         )["test"]
+        _save_metrics_csv(results[label], f"./results/fewshot_k{k}")
 
     # --- Comparison table ---
     sep = "=" * (17 + len(results) * 15)
@@ -123,11 +148,10 @@ def main(
         if "pearson" in data:
             print(f"  Pearson: {data['pearson']:.4f}  Spearman: {data['spearman']:.4f}  RMSE: {data['rmse']:.4f}")
 
-    # --- Comparison plots (all models together) ---
-    model_slug = ollama_model.replace(":", "-")
-    out_dir = Path("./results/compare_all")
-    save_comparison_plots(results, out_dir, model_slug=model_slug)
-    print(f"\nComparison plots saved to {out_dir}/")
+    # --- Comparison plots + CSV ---
+    compare_dir = Path("./results/compare_all")
+    save_comparison_plots(results, compare_dir, model_slug=model_slug)
+    _save_comparison_csv(results, compare_dir)
 
     return results
 
