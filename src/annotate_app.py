@@ -175,9 +175,9 @@ def _render(idx: int) -> tuple:
     a = str(row.get("actionability", ""))
     c = str(row.get("clarity", ""))
     n = str(row.get("notes", ""))
-    r_val = int(r) if r.isdigit() and r in ("1", "2", "3") else None
-    a_val = int(a) if a.isdigit() and a in ("1", "2", "3") else None
-    c_val = int(c) if c.isdigit() and c in ("1", "2", "3") else None
+    r_val = int(r) if r.isdigit() and r in ("1", "2", "3", "4", "5") else None
+    a_val = int(a) if a.isdigit() and a in ("1", "2", "3", "4", "5") else None
+    c_val = int(c) if c.isdigit() and c in ("1", "2", "3", "4", "5") else None
 
     return progress, title, topic_val, stance_val, argument_val, feedback, r_val, a_val, c_val, n
 
@@ -186,9 +186,11 @@ def build_app(csv_path: Path) -> gr.Blocks:
     global _state
     _state = AnnotationState(csv_path)
 
-    score_choices = [1, 2, 3]
+    score_choices = [1, 2, 3, 4, 5]
+    
     score_info = (
-        "**1** = Poor &nbsp; **2** = Partially acceptable &nbsp; **3** = Good"
+        "**1** = Poor &nbsp;·&nbsp; **2** = Below Average &nbsp;·&nbsp; "
+        "**3** = Average / Fair &nbsp;·&nbsp; **4** = Good &nbsp;·&nbsp; **5** = Excellent"
     )
 
     with gr.Blocks(title="ArguMentor — Annotation") as app:
