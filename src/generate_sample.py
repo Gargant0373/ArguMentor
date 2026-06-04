@@ -32,6 +32,7 @@ from src.predictor import ArgumentPredictor
 
 SEED = 42
 N_PER_CLASS = 80       # 80 × 3 classes = 240 total items
+N_CALIB_PER_CLASS = 5  # 5 × 3 classes = 15 calibration items
 N_OVERLAP = 32         # ~8 per class; all 4 annotators see these
 N_ANNOTATORS = 4
 OUTPUT_DIR = Path("data")
@@ -110,34 +111,51 @@ def main() -> None:
     # ------------------------------------------------------------------
     # 3. Sample 80 per predicted class → 240 items
     # ------------------------------------------------------------------
-    print("Sampling items...")
-    rng = pd.Series(dtype=str)
-    sampled_parts = []
+    print("Sampling items for main study and calibration...")
+    main_parts = []
+    calib_parts = []
+    
     for quality in ("low", "medium", "high"):
         pool = test_df[test_df["predicted_quality"] == quality]
-        n = min(N_PER_CLASS, len(pool))
-        sampled_parts.append(pool.sample(n=n, random_state=SEED))
+        
+        # Sample 85 items total per class up front
+        total_needed = N_PER_CLASS + N_CALIB_PER_CLASS
+        shuffled_pool = pool.sample(n=min(total_needed, len(pool)), random_state=SEED).reset_index(drop=True)
+        
+        # Split into main assignment (80) and calibration (5)
+        main_parts.append(shuffled_pool.iloc[:N_PER_CLASS])
+        calib_parts.append(shuffled_pool.iloc[N_PER_CLASS:])
 
-    sample_df = pd.concat(sampled_parts).reset_index(drop=True)
+    # Create the two distinct dataframes
+    sample_df = pd.concat(main_parts).reset_index(drop=True)
+    calib_df = pd.concat(calib_parts).reset_index(drop=True)
+
+    # Assign IDs and track calibration status
     sample_df["item_id"] = [f"item_{i:04d}" for i in range(len(sample_df))]
+    sample_df["is_calibration"] = False
+
+    calib_df["item_id"] = [f"calib_{i:04d}" for i in range(len(calib_df))]
+    calib_df["is_calibration"] = True
+
+    # Temporarily combine them so they BOTH get feedback from Llama in Step 5
+    processing_df = pd.concat([sample_df, calib_df]).reset_index(drop=True)
 
     # ------------------------------------------------------------------
     # 4. Select 32 overlap items (~8 per class)
     # ------------------------------------------------------------------
-    n_overlap_per_class = N_OVERLAP // 3  # 10, 10, 12 distributed below
+    n_overlap_per_class = N_OVERLAP // 3
     overlap_ids = []
+    
+    # Isolate just the main sample rows to calculate overlap IDs
+    main_rows = processing_df[~processing_df["is_calibration"]]
+    
     for i, quality in enumerate(("low", "medium", "high")):
-        pool = sample_df[sample_df["predicted_quality"] == quality]["item_id"].tolist()
-        # Give the last class any remainder
+        pool = main_rows[main_rows["predicted_quality"] == quality]["item_id"].tolist()
         n = n_overlap_per_class + (N_OVERLAP % 3 if i == 2 else 0)
-        chosen = (
-            pd.Series(pool)
-            .sample(n=min(n, len(pool)), random_state=SEED)
-            .tolist()
-        )
+        chosen = pd.Series(pool).sample(n=min(n, len(pool)), random_state=SEED).tolist()
         overlap_ids.extend(chosen)
 
-    sample_df["is_overlap"] = sample_df["item_id"].isin(overlap_ids)
+    processing_df["is_overlap"] = processing_df["item_id"].isin(overlap_ids)
 
     # ------------------------------------------------------------------
     # 5. Generate feedback for all 240 items
@@ -146,8 +164,8 @@ def main() -> None:
     gen = FeedbackGenerator(model="llama3.2:3b")
     on_topics, strengths, focus_areas, suggestions, reasonings = [], [], [], [], []
 
-    total = len(sample_df)
-    for idx, (_, row) in enumerate(sample_df.iterrows(), 1):
+    total = len(processing_df)
+    for idx, (_, row) in enumerate(processing_df.iterrows(), 1):
         if idx % 10 == 0 or idx == 1:
             print(f"  Feedback {idx}/{total}...")
         fb = _generate_feedback_safe(
@@ -163,19 +181,24 @@ def main() -> None:
         suggestions.append(fb.get("suggestion", ""))
         reasonings.append(fb.get("reasoning", ""))
 
-    sample_df["on_topic"] = on_topics
-    sample_df["strength"] = strengths
-    sample_df["focus_area"] = focus_areas
-    sample_df["suggestion"] = suggestions
-    sample_df["reasoning"] = reasonings
+    processing_df["on_topic"] = on_topics
+    processing_df["strength"] = strengths
+    processing_df["focus_area"] = focus_areas
+    processing_df["suggestion"] = suggestions
+    processing_df["reasoning"] = reasonings
 
     # ------------------------------------------------------------------
     # 6. Split non-overlap items into 4 × 52 unique pools
     # ------------------------------------------------------------------
-    non_overlap = sample_df[~sample_df["is_overlap"]].sample(
+
+    # Separate calibration back out before doing individual splits
+    final_calib_df = processing_df[processing_df["is_calibration"]].copy()
+    main_pool_df = processing_df[~processing_df["is_calibration"]].copy()
+
+    non_overlap = main_pool_df[~main_pool_df["is_overlap"]].sample(
         frac=1, random_state=SEED
     ).reset_index(drop=True)
-    overlap = sample_df[sample_df["is_overlap"]].reset_index(drop=True)
+    overlap = main_pool_df[main_pool_df["is_overlap"]].reset_index(drop=True)
 
     n_unique = len(non_overlap) // N_ANNOTATORS  # 52
     print(f"\nSplit: {len(non_overlap)} non-overlap items → {n_unique} per annotator")
@@ -213,9 +236,31 @@ def main() -> None:
         out_path = OUTPUT_DIR / f"annotator_{i + 1}.csv"
         annotator_df[final_cols].to_csv(out_path, index=False)
         print(f"Wrote {out_path}  ({len(annotator_df)} rows)")
+    
+    # ------------------------------------------------------------------
+    # 8. Write the master Calibration Phase CSV (PASTE HERE)
+    # ------------------------------------------------------------------
+    final_calib_df["relevance"] = ""
+    final_calib_df["actionability"] = ""
+    final_calib_df["clarity"] = ""
+    final_calib_df["notes"] = ""
+    final_calib_df = final_calib_df.rename(columns={"stance_str": "stance"})
+    
+    # We explicitly define the columns here to avoid scope issues
+    calib_cols = [
+        "item_id", "topic", "stance", "argument", "predicted_quality",
+        "on_topic", "strength", "focus_area", "suggestion", "reasoning", "is_overlap",
+        "relevance", "actionability", "clarity", "notes",
+    ]
+    final_calib_df = final_calib_df[calib_cols]
+    
+    calib_out_path = OUTPUT_DIR / "calibration.csv"
+    final_calib_df.to_csv(calib_out_path, index=False)
+    print(f"Wrote {calib_out_path} ({len(final_calib_df)} rows) for team calibration pilot.")
 
     print("\nDone. Share each annotator_N.csv with the corresponding annotator.")
     print("Run the annotation UI with:  python src/annotate_app.py --file data/annotator_N.csv")
+
 
 
 if __name__ == "__main__":
