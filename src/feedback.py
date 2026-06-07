@@ -15,9 +15,11 @@ _SYSTEM_MESSAGE = (
     "relevance, and clarity — not on the political or moral content of the argument. "
     "You must respond with valid JSON only, using exactly these keys: "
     '"on_topic", "strength", "focus_area", "suggestion", "reasoning". '
-    f"focus_area must be one of: {_FOCUS_AREAS}. "
-    '"on_topic" must be a boolean: true if the argument addresses the topic and stance, false if it is off-topic. '
-    '"strength" must be one sentence describing what the argument does well.'
+    f'focus_area must be exactly one of these six values: {_FOCUS_AREAS}. No other values are permitted. '
+    '"on_topic" must be false if the argument fails to address either the topic OR the stance — '
+    "including arguments that are tangential, change the subject, or argue for neither side. "
+    "Never use hedging language in suggestions ('Consider', 'Try to', 'You might'). "
+    "Use directive language: 'Add X', 'Replace Y with Z', 'State the warrant explicitly'."
 )
 
 # Tier-specific Toulmin guidance: low → claim+grounds, medium → warrant+backing, high → qualifier+rebuttal
@@ -49,11 +51,11 @@ Argument: {argument}
 Feedback guidance for {predicted_quality}-quality arguments: {quality_guidance}
 
 Respond with a JSON object with exactly five keys:
-- "on_topic": boolean — true if the argument addresses the topic and stance, false if it is off-topic or irrelevant
-- "strength": one sentence on what the argument does well (even low-quality arguments have something)
-- "focus_area": the primary dimension to improve (one of: {focus_areas})
-- "suggestion": one concise, specific, actionable suggestion (1-2 sentences)
-- "reasoning": a brief explanation of why this improvement would strengthen the argument
+- "on_topic": boolean — false if the argument fails to address the topic OR the stance (tangential, off-subject, or arguing for neither side); true otherwise
+- "strength": one sentence naming something concrete from this specific argument text that works (a specific piece of evidence, a rhetorical move, a named concept). Do not write generic phrases like "states a clear stance".
+- "focus_area": MUST be exactly one of: {focus_areas}. No other values are allowed.
+- "suggestion": one directive, actionable suggestion (1-2 sentences). Must include a concrete example — either a rewritten version of the argument or the exact evidence/warrant/claim to add. Do not just name a category of improvement. Do not use hedging language ("Consider", "Try to").
+- "reasoning": one sentence naming which Toulmin element is weak and why the suggested fix addresses it. Do not use generic phrases like "this would strengthen the argument".
 
 Do not discuss the topic's merits. Output JSON only."""
 
