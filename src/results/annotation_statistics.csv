@@ -1,0 +1,4 @@
+metric,n,mean,median,std,krippendorff_alpha
+Relevance,420,3.426,3.0,1.26,0.145
+Actionability,420,4.31,4.0,0.781,0.502
+Clarity,420,4.507,5.0,0.749,0.261
