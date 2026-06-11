@@ -1,9 +1,11 @@
 from pathlib import Path
 import pandas as pd
+import numpy as np
 import krippendorff
 import itertools
 from sklearn.metrics import cohen_kappa_score
-
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 DATA_DIR = Path("data")
 
@@ -61,6 +63,56 @@ def compute_summary_statistics(df):
 
 
 # -----------------------------
+# Combined Visualizations Plotter
+# -----------------------------
+def plot_combined_distribution(df):
+    """
+    Melds all metric distributions into a single grouped bar chart
+    and saves it to the results directory.
+    """
+    print("\nGenerating combined distribution visualization...")
+    
+    # Clean and melt data to long format for seaborn
+    plot_df = df[METRICS].copy()
+    for col in plot_df.columns:
+        plot_df[col] = pd.to_numeric(plot_df[col], errors='coerce')
+        
+    melted_df = plot_df.melt(var_name="Metric", value_name="Score").dropna()
+    melted_df["Metric"] = melted_df["Metric"].str.capitalize()
+    melted_df["Score"] = melted_df["Score"].astype(int)
+
+    # Plot
+    plt.figure(figsize=(10, 6))
+    sns.set_theme(style="whitegrid")
+    
+    # hue_order keeps your layout visually consistent
+    ax = sns.countplot(
+        data=melted_df, 
+        x="Score", 
+        hue="Metric", 
+        palette="tab10",
+        hue_order=["Actionability", "Relevance", "Clarity"]
+    )
+    
+    # Styling
+    plt.title("Distribution of Ratings Across Categories", fontsize=14, fontweight='bold', pad=15)
+    plt.xlabel("Score (1-5)", fontsize=12)
+    plt.ylabel("Count", fontsize=12)
+    plt.legend(title="Metrics", loc="upper left")
+    sns.despine(left=True, bottom=True)
+    
+    plt.tight_layout()
+    
+    # Save chart
+    output_dir = Path("results")
+    output_dir.mkdir(exist_ok=True)
+    chart_path = output_dir / "combined_rating_distribution.png"
+    plt.savefig(chart_path, dpi=300)
+    plt.close()
+    print(f"Chart saved to: {chart_path}")
+
+
+# -----------------------------
 # Krippendorff alpha
 # -----------------------------
 def compute_alpha(overlap_df, metric):
@@ -105,8 +157,10 @@ def compute_pairwise_agreement(overlap_df, metric):
 
     return results
 
-#Cohen's Kappa
 
+# -----------------------------
+# Cohen's Kappa
+# -----------------------------
 def compute_pairwise_kappa(overlap_df, metric):
     annotators = sorted(overlap_df["annotator"].unique())
 
@@ -151,6 +205,9 @@ def main():
 
     summary = compute_summary_statistics(all_ratings)
     print(summary.to_string(index=False))
+    
+    # Call the visualization generation
+    plot_combined_distribution(all_ratings)
 
     # -----------------------------
     # Overlap filtering
